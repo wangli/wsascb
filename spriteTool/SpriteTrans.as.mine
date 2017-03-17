@@ -1,0 +1,51 @@
+﻿package com.wsascb.spriteTool
+{
+	import flash.display.Sprite;
+	import flash.geom.ColorTransform;
+	import flash.geom.Matrix;
+	import flash.geom.Transform;
+	import com.wsascb.bitmapEdit.filters.ColorMatrixArrays;
+	import flash.filters.ColorMatrixFilter;
+
+	public class SpriteTrans
+	{
+		//色彩覆盖应用
+		static public function ColorTrans(spr:Sprite,color:uint):void
+		{
+			var resultColorTransform:ColorTransform = new ColorTransform();
+			resultColorTransform.color = color;
+			spr.transform.colorTransform = resultColorTransform;
+		}
+		//高级自定义色彩调整
+		static public function ColorAdvTrans(spr:Sprite,r:Number,g:Number,b:Number):void
+		{
+			var resultColorTransform:ColorTransform = new ColorTransform();
+			resultColorTransform.redOffset = r;
+			resultColorTransform.greenOffset = g;
+			resultColorTransform.blueOffset = b;
+			spr.transform.colorTransform = resultColorTransform;
+		}
+		//清楚色彩应用
+		static public function removeColorTrans(spr:Sprite):void
+		{
+			var resultColorTransform:ColorTransform = new ColorTransform();
+			resultColorTransform.redOffset = 0;
+			resultColorTransform.greenOffset = 0;
+			resultColorTransform.blueOffset = 0;
+			spr.transform.colorTransform = resultColorTransform;
+		}
+		//灰阶滤镜应用
+		static public function GraysFilter(spr:Sprite):void
+		{
+			var _sharpening:ColorMatrixFilter = new ColorMatrixFilter(ColorMatrixArrays.grayscaleArray());
+			spr.filters = [_sharpening];
+		}
+		//清楚滤镜应用
+		static public function removeFilter(spr:Sprite):void
+		{
+			spr.filters = null;
+		}
+
+	}
+
+}
